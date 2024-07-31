@@ -10,7 +10,7 @@ yarn add @poool/vue-access
 
 ## Usage
 
-```vue
+```html
 <script>
   import { ref } from 'vue';
   import {
@@ -59,7 +59,7 @@ yarn add @poool/vue-access
 
 ## Usage with AuditProvider
 
-```vue
+```html
 <script>
   import { ref } from 'vue';
   import {
@@ -123,7 +123,7 @@ use inject method from vue.
 
 #### Composition API
 
-```vue
+```html
 <script>
   import { inject } from 'vue';
   import { AccessProviderSymbol, AuditProviderSymbol } from '@poool/vue-access';
