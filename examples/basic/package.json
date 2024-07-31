@@ -1,0 +1,9 @@
+{
+  "name": "poool-vue-access-basic-example",
+  "scripts": {
+    "serve": "vite"
+  },
+  "dependencies": {
+    "@poool/vue-access": "portal:../../"
+  }
+}
