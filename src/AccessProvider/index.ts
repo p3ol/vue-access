@@ -92,13 +92,9 @@ const AccessProvider = defineComponent({
       !globalThis.PooolAccess ||
       !globalThis.PooolAccess.isPoool
     ) {
-      try {
-        await loadScript(this.scriptUrl, 'poool-vue-access-lib', {
-          timeout: this.scriptLoadTimeout,
-        });
-      } catch (err) {
-        warn('AccessProvider', this.vueDebug, 'Failed to load Access SDK script', err);
-      }
+      await loadScript(this.scriptUrl, 'poool-vue-access-lib', {
+        timeout: this.scriptLoadTimeout,
+      });
     }
 
     this.init();
