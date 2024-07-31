@@ -1,0 +1,59 @@
+{
+  "name": "@poool/vue-access",
+  "version": "1.0.0",
+  "description": "Plugin to easily add Poool access to your Vue app ✨",
+  "repository": "https://github.com/p3ol/vue-access.git",
+  "author": "Nicolas Auger <nicolas@poool.fr",
+  "license": "MIT",
+  "main": "dist/poool-vue-access.cjs.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "sideEffects": false,
+  "engines": {
+    "node": "18 || 20 || 22"
+  },
+  "workspaces": [
+    "examples/*"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "26.0.1",
+    "@rollup/plugin-node-resolve": "15.2.3",
+    "@rollup/plugin-swc": "0.3.1",
+    "@rollup/plugin-terser": "0.4.4",
+    "@swc/core": "1.7.0",
+    "@types/node": "20.14.5",
+    "@vitejs/plugin-vue": "5.0.5",
+    "@vue/eslint-config-typescript": "13.0.0",
+    "@vue/tsconfig": "0.5.1",
+    "commit-and-tag-version": "12.4.1",
+    "eslint": "8.57.0",
+    "eslint-plugin-vue": "9.23.0",
+    "rollup": "4.18.1",
+    "typescript": "5.5.3",
+    "vite": "5.3.4",
+    "vue": "3.4.33",
+    "vue-router": "4.4.0",
+    "vue-tsc": "2.0.21"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "scripts": {
+    "type-check": "vue-tsc --build --force",
+    "clean": "rm -rf ./dist || true",
+    "build": "yarn clean && yarn build:code && yarn build:types",
+    "build:code": "rollup --configPlugin @rollup/plugin-swc -c",
+    "build:types": "tsc --project ./tsconfig.build.json",
+    "prepack": "yarn build && yarn lint && yarn tsc && yarn test",
+    "test": "NODE_ENV='test' jest",
+    "lint": "eslint --max-warnings=0 .",
+    "release": "commit-and-tag-version && git push --follow-tags",
+    "example:basic": "yarn workspace poool-vue-access-basic-example serve",
+    "example:next": "yarn workspace poool-vue-access-next-example dev"
+  },
+  "dependencies": {
+    "@junipero/core": "3.7.1",
+    "@types/poool-access": "5.18.0"
+  },
+  "packageManager": "yarn@4.3.1"
+}
