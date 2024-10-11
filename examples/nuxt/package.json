@@ -1,0 +1,10 @@
+{
+  "name": "poool-vue-access-nuxt-example",
+  "type": "module",
+  "scripts": {
+    "serve": "nuxt dev"
+  },
+  "dependencies": {
+    "@poool/vue-access": "portal:../../"
+  }
+}
