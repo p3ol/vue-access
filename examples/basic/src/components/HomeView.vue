@@ -24,6 +24,8 @@ const { lib: audit } = auditProvider;
   <nav>
     <RouterLink to="/premium">Go to premium</RouterLink>
     <RouterLink class="ml-3" to="/consent">Go to consent</RouterLink>
+    <RouterLink class="ml-3" to="/article/1">Go to article 1</RouterLink>
+    <RouterLink class="ml-3" to="/article/2">Go to article 2</RouterLink>
 
     <div class="mt-3"><b>Has Access:</b> {{ typeof access === 'object' }}</div>
     <div><b>Has Audit:</b> {{ typeof audit === 'object' }}</div>

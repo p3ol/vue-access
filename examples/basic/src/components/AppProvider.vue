@@ -38,6 +38,7 @@ watch(path, (value) => {
     :texts="{}"
     :withAudit="true"
     :vueDebug="true"
+    :key="path.value"
   >
     <slot></slot>
   </AccessProvider>
