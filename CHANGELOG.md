@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. See [commit
 
 ## [1.0.1](https://github.com/p3ol/vue-access/compare/v1.0.0...v1.0.1) (2025-06-25)
 
+* **examples:** add dynamic-path based example ([4338ddc](https://github.com/p3ol/vue-access/commit/4338ddce16bb290cfb2942a0e3dfe5d7d24c3807))
+
 ## [1.0.0](https://github.com/p3ol/vue-access/compare/v0.1.0...v1.0.0) (2024-10-11)
 
 
