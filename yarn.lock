@@ -1855,7 +1855,7 @@ __metadata:
     "@rollup/plugin-swc": "npm:0.4.0"
     "@rollup/plugin-terser": "npm:0.4.4"
     "@swc/core": "npm:1.7.40"
-    "@types/node": "npm:22.7.9"
+    "@types/node": "npm:22.19.2"
     "@types/poool-access": "npm:5.18.0"
     "@vitejs/plugin-vue": "npm:5.1.4"
     "@vue/eslint-config-typescript": "npm:13.0.0"
@@ -2731,12 +2731,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:22.7.9":
-  version: 22.7.9
-  resolution: "@types/node@npm:22.7.9"
+"@types/node@npm:22.19.2":
+  version: 22.19.2
+  resolution: "@types/node@npm:22.19.2"
   dependencies:
-    undici-types: "npm:~6.19.2"
-  checksum: 10c0/2d1917702b9d9ede8e4d8151cd8b1af8bc147d543486474ffbe0742e38764ea73105939e6a767addf7a4c39e842e16eae762bff90617d7b7f9ee3fbbb2d23bfa
+    undici-types: "npm:~6.21.0"
+  checksum: 10c0/fd56fc727bdc2cd9582e05db5daab6c8eb7bc5e5640a54cbc64ccc160a61cf50940742be5536f83796bffc83ce7709d5580a9ca85806f57501958821d230ab78
   languageName: node
   linkType: hard
 
@@ -10606,10 +10606,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~6.19.2":
-  version: 6.19.8
-  resolution: "undici-types@npm:6.19.8"
-  checksum: 10c0/078afa5990fba110f6824823ace86073b4638f1d5112ee26e790155f481f2a868cc3e0615505b6f4282bdf74a3d8caad715fd809e870c2bb0704e3ea6082f344
+"undici-types@npm:~6.21.0":
+  version: 6.21.0
+  resolution: "undici-types@npm:6.21.0"
+  checksum: 10c0/c01ed51829b10aa72fc3ce64b747f8e74ae9b60eafa19a7b46ef624403508a54c526ffab06a14a26b3120d055e1104d7abe7c9017e83ced038ea5cf52f8d5e04
   languageName: node
   linkType: hard
 
