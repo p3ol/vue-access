@@ -62,9 +62,9 @@ const AuditProvider = defineComponent({
 
   async mounted() {
     if (
-      !globalThis.Audit ||
-      !globalThis.Audit?.isPoool ||
-      !globalThis.PooolAudit ||
+      !globalThis.Audit &&
+      !globalThis.Audit?.isPoool &&
+      !globalThis.PooolAudit &&
       !globalThis.PooolAudit?.isPoool
     ) {
       await loadScript(this.scriptUrl, 'poool-vue-audit-lib', {
@@ -80,12 +80,12 @@ const AuditProvider = defineComponent({
   },
 
   watch: {
-    "config.cookies_enabled": { handler: 'reinit', deep: true },
+    "config.cookies_enabled": { handler: 'reinit' },
   },
 
   methods: {
     // Method to initialize the Audit SDK, setup the config and events handlers
-    async init() {      
+    async init() {
       const auditRef = globalThis.PooolAudit || globalThis.Audit;
       const lib = toRaw(auditRef?.noConflict());
 
@@ -141,8 +141,8 @@ const AuditProvider = defineComponent({
               (callback as EventCallbackFunction<typeof event>)
           );
         });
-  
-      audit?.off('identityAvailable', this.onIdentityAvailable);      
+
+      audit?.off('identityAvailable', this.onIdentityAvailable);
     },
 
     // Method to reinit

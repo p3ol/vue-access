@@ -85,7 +85,6 @@ const Paywall = defineComponent({
 
   watch: {
     'accessProvider.lib': { handler: 'create', deep: true },
-
     'accessProvider.config.cookies_enabled': {
       handler: 'recreate',
     },

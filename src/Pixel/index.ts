@@ -73,7 +73,7 @@ const Pixel = defineComponent({
     },
 
     "auditProvider.config.cookies_enabled": {
-      handler: 'send',
+      handler: 'consentChanged',
     },
   },
 
@@ -86,6 +86,10 @@ const Pixel = defineComponent({
   },
 
   methods: {
+    consentChanged() {
+      this.used = false;
+      this.send();
+    },
     async send() {
       const {
         lib,
@@ -123,6 +127,7 @@ const Pixel = defineComponent({
         this.data,
         this.options
       );
+
       this.onDone?.();
     },
 
