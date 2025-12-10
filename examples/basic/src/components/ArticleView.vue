@@ -122,6 +122,7 @@ const cookies_enabled = computed(() => {
       <Paywall
         :contentRef="getContentRef"
         :events="events"
+        :key="$route.fullPath"
       />
 
       <Pixel type="page-view" :data="{ type: 'premium' }" />
