@@ -88,7 +88,6 @@ const Paywall = defineComponent({
 
     'accessProvider.config.cookies_enabled': {
       handler: 'recreate',
-      deep: true,
     },
   },
 

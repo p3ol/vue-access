@@ -74,7 +74,6 @@ const Pixel = defineComponent({
 
     "auditProvider.config.cookies_enabled": {
       handler: 'send',
-      deep: true,
     },
   },
 
