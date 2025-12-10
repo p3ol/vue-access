@@ -1,14 +1,24 @@
 <script>
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import AppProvider from './components/AppProvider.vue';
 </script>
 
 <template>
   <div>
     <NuxtLayout>
-      <AppProvider>
-        <NuxtPage />
-      </AppProvider>
+      <NuxtPage />
     </NuxtLayout>
   </div>
 </template>
+
+<style>
+nav {
+  margin-top: 1rem;
+}
+
+.ml-3 {
+  margin-left: 1rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+</style>

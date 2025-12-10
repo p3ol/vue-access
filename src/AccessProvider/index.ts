@@ -97,7 +97,7 @@ const AccessProvider = defineComponent({
       });
     }
 
-    this.init();
+    await this.init();
   },
 
   methods: {

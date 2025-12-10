@@ -1,13 +1,10 @@
 <script setup>
 import { RouterView } from 'vue-router';
-import AppProvider from './components/AppProvider.vue';
 </script>
 
 <template>
   <main>
-    <AppProvider>
-      <RouterView />
-    </AppProvider>
+    <RouterView />
   </main>
 </template>
 
