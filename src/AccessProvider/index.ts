@@ -87,24 +87,22 @@ const AccessProvider = defineComponent({
 
   async mounted() {
     if (
-      !globalThis.Access ||
-      !globalThis.Access.isPoool ||
-      !globalThis.PooolAccess ||
-      !globalThis.PooolAccess.isPoool
+      !globalThis.Access?.isPoool &&
+      !globalThis.PooolAccess?.isPoool
     ) {
       await loadScript(this.scriptUrl, 'poool-vue-access-lib', {
         timeout: this.scriptLoadTimeout,
       });
     }
 
-    this.init();
+    await this.init();
   },
 
   methods: {
     // Method to load the Access SDK script into the global scope
     async init() {
       const accessRef = globalThis.PooolAccess || globalThis.Access;
-      this.lib = accessRef?.noConflict();      
+      this.lib = accessRef?.noConflict();
     },
 
     // Method to create a new AccessFactory instance with every configs &

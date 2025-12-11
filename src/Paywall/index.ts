@@ -85,10 +85,9 @@ const Paywall = defineComponent({
 
   watch: {
     'accessProvider.lib': { handler: 'create', deep: true },
-
+    
     'accessProvider.config.cookies_enabled': {
       handler: 'recreate',
-      deep: true,
     },
   },
 
@@ -165,7 +164,7 @@ const Paywall = defineComponent({
       container.innerHTML = '';
       const access = toRaw(this.accessFactory);
       access.off('identityAvailable', this.onIdentityAvailable);
-      await destroyFactory?.(access);
+      destroyFactory?.(access);
       this.accessFactory = null;      
     },
 
