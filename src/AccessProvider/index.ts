@@ -87,9 +87,7 @@ const AccessProvider = defineComponent({
 
   async mounted() {
     if (
-      !globalThis.Access &&
       !globalThis.Access?.isPoool &&
-      !globalThis.PooolAccess &&
       !globalThis.PooolAccess?.isPoool
     ) {
       await loadScript(this.scriptUrl, 'poool-vue-access-lib', {

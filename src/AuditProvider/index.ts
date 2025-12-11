@@ -62,9 +62,7 @@ const AuditProvider = defineComponent({
 
   async mounted() {
     if (
-      !globalThis.Audit &&
       !globalThis.Audit?.isPoool &&
-      !globalThis.PooolAudit &&
       !globalThis.PooolAudit?.isPoool
     ) {
       await loadScript(this.scriptUrl, 'poool-vue-audit-lib', {
