@@ -1,6 +1,6 @@
 {
   "name": "@poool/vue-access",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Plugin to easily add Poool access to your Vue app ✨",
   "type": "module",
   "repository": "https://github.com/p3ol/vue-access.git",

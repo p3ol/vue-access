@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.0.2](https://github.com/p3ol/vue-access/compare/v1.0.1...v1.0.2) (2025-12-12)
+
+
+### Bug Fixes
+
+* add missing key on paywalls ([074907b](https://github.com/p3ol/vue-access/commit/074907b22dbd5d793683c514f647782eecec0e0d))
+* cleaner script loading method ([12cd3ed](https://github.com/p3ol/vue-access/commit/12cd3ed2d96113aa02d95db21f7a0e4e9d6134da))
+* exports ([643f978](https://github.com/p3ol/vue-access/commit/643f978562e06661efef541fede9b51079885597))
+* fix another weird behavior on page reload & consent ([be0170e](https://github.com/p3ol/vue-access/commit/be0170e7e01df99e56a16ff8aba06704514e06a6))
+* fix both examples ([242d6f1](https://github.com/p3ol/vue-access/commit/242d6f1ed71698099d1f516e89b12ed01bb3ea43))
+* package is now module first ([6035a54](https://github.com/p3ol/vue-access/commit/6035a54d5064a185a34d6e23056296ac985f27ea))
+* wrong access provider behavior ([a3f4376](https://github.com/p3ol/vue-access/commit/a3f437627c902394d14269daaeed37f0d32c8bf0))
+
 ## [1.0.1](https://github.com/p3ol/vue-access/compare/v1.0.0...v1.0.1) (2025-06-25)
 
 * **examples:** add dynamic-path based example ([4338ddc](https://github.com/p3ol/vue-access/commit/4338ddce16bb290cfb2942a0e3dfe5d7d24c3807))
