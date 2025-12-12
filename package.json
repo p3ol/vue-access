@@ -10,12 +10,22 @@
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "engines": {
     "node": "20 || 22 || 24"
   },
   "workspaces": [
     "examples/*"
   ],
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
   "dependencies": {
     "@junipero/core": "3.12.3",
     "@types/poool-access": "5.18.1"
@@ -38,9 +48,6 @@
     "vue-eslint-parser": "10.2.0",
     "vue-tsc": "3.1.8"
   },
-  "peerDependencies": {
-    "vue": "^3.0.0"
-  },
   "scripts": {
     "type-check": "vue-tsc --build --force",
     "clean": "rm -rf ./dist || true",
@@ -51,6 +58,7 @@
     "test": "NODE_ENV='test' jest",
     "lint": "eslint --max-warnings=0 .",
     "release": "commit-and-tag-version && git push --follow-tags",
+    "release:dry": "commit-and-tag-version --dry-run",
     "example:basic": "yarn workspace poool-vue-access-basic-example serve",
     "example:nuxt": "yarn workspace poool-vue-access-nuxt-example serve"
   },
