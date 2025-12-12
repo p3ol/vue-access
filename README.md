@@ -202,7 +202,14 @@ export default MyChildComponent;
 - `reuse` {`Boolean`} (optional, default: `false`) Whether to reuse the same event or not
 
 
-### Quickly test localy
+## Contributing
+
+[![](https://contrib.rocks/image?repo=p3ol/vue-access)](https://github.com/p3ol/vue-access/graphs/contributors)
+
+Please check the [CONTRIBUTING.md](https://github.com/p3ol/vue-access/blob/main/CONTRIBUTING.md) doc for contribution guidelines.
+
+
+## Development
 
 Run basic example with Vite
 
@@ -215,3 +222,7 @@ Run Nuxt framework example
 ```bash
 yarn example:nuxt
 ```
+
+## License
+
+This software is licensed under [MIT](https://github.com/p3ol/vue-access/blob/master/LICENSE).
