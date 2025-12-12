@@ -6,8 +6,8 @@
   "repository": "https://github.com/p3ol/vue-access.git",
   "author": "Nicolas Auger <nicolas@poool.fr",
   "license": "MIT",
-  "main": "dist/poool-vue-access.cjs.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "sideEffects": false,
   "engines": {
@@ -21,25 +21,22 @@
     "@types/poool-access": "5.18.1"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "28.0.1",
-    "@rollup/plugin-node-resolve": "15.3.0",
-    "@rollup/plugin-swc": "0.4.0",
-    "@rollup/plugin-terser": "0.4.4",
-    "@swc/core": "1.7.40",
-    "@types/node": "22.7.9",
-    "@vitejs/plugin-vue": "5.1.4",
-    "@vue/eslint-config-typescript": "13.0.0",
-    "@vue/tsconfig": "0.5.1",
-    "commit-and-tag-version": "12.5.0",
-    "eslint": "8.57.1",
-    "eslint-plugin-vue": "9.29.1",
-    "nuxt": "3.13.2",
-    "rollup": "4.24.3",
-    "typescript": "5.6.3",
-    "vite": "5.4.21",
-    "vue": "3.5.13",
-    "vue-router": "4.4.5",
-    "vue-tsc": "2.1.10"
+    "@poool/eslint-config": "5.0.7",
+    "@swc/core": "1.15.3",
+    "@types/node": "25.0.0",
+    "@vitejs/plugin-vue": "6.0.2",
+    "@vue/eslint-config-typescript": "14.6.0",
+    "@vue/tsconfig": "0.8.1",
+    "commit-and-tag-version": "12.6.1",
+    "eslint": "9.39.1",
+    "eslint-plugin-vue": "10.6.2",
+    "tsdown": "0.17.2",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.49.0",
+    "vite": "7.2.7",
+    "vue": "3.5.25",
+    "vue-eslint-parser": "10.2.0",
+    "vue-tsc": "3.1.8"
   },
   "peerDependencies": {
     "vue": "^3.0.0"
@@ -48,7 +45,7 @@
     "type-check": "vue-tsc --build --force",
     "clean": "rm -rf ./dist || true",
     "build": "yarn clean && yarn build:code && yarn build:types",
-    "build:code": "rollup --configPlugin @rollup/plugin-swc -c",
+    "build:code": "tsdown",
     "build:types": "tsc --project ./tsconfig.build.json",
     "prepack": "yarn build && yarn lint && yarn tsc",
     "test": "NODE_ENV='test' jest",
@@ -57,5 +54,13 @@
     "example:basic": "yarn workspace poool-vue-access-basic-example serve",
     "example:nuxt": "yarn workspace poool-vue-access-nuxt-example serve"
   },
+  "targets": [
+    "chrome109",
+    "edge138",
+    "firefox140",
+    "safari18",
+    "opera80",
+    "node20"
+  ],
   "packageManager": "yarn@4.12.0"
 }
