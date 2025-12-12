@@ -1,3 +1,4 @@
+import type { Poool } from 'poool-access';
 import {
   type PropType,
   defineComponent,
@@ -5,8 +6,7 @@ import {
   h,
   toRaw,
   Ref,
-  } from 'vue';
-import type { Poool } from 'poool-access';
+} from 'vue';
 import { classNames } from '@junipero/core';
 
 import type {
@@ -16,7 +16,6 @@ import type {
 } from '../utils/types';
 import { generateId } from '../utils';
 import { trace, warn } from '../utils/logger';
-
 import {
   type AccessProviderValue,
   AccessProviderSymbol,
@@ -57,70 +56,80 @@ export declare interface PaywallRef extends PaywallProps {
 
 const Paywall = defineComponent({
   name: 'PaywallComponent',
-
+  inject: {
+    // Use Access Provider to get the Access SDK and its config
+    accessProvider: { from: AccessProviderSymbol },
+  },
   props: {
-    id: String as PropType<PaywallProps['id']>,
-    contentRef: Function as PropType<PaywallProps['contentRef']>,
-    config: Object as PropType<PaywallProps["config"]>,
-    texts: Object as PropType<PaywallProps["texts"]>,
-    styles: Object as PropType<PaywallProps["styles"]>,
-    variables: Object as PropType<PaywallProps["variables"]>,
-    events: Object as PropType<PaywallProps["events"]>,
-
+    id: {
+      type: String as PropType<PaywallProps['id']>,
+      default: null,
+    },
+    contentRef: {
+      type: Function as PropType<PaywallProps['contentRef']>,
+      default: null,
+    },
+    config: {
+      type: Object as PropType<PaywallProps['config']>,
+      default () { return {}; },
+    },
+    texts: {
+      type: Object as PropType<PaywallProps['texts']>,
+      default () { return {}; },
+    },
+    styles: {
+      type: Object as PropType<PaywallProps['styles']>,
+      default () { return {}; },
+    },
+    variables: {
+      type: Object as PropType<PaywallProps['variables']>,
+      default () { return {}; },
+    },
+    events: {
+      type: Object as PropType<PaywallProps['events']>,
+      default () { return {}; },
+    },
     pageType: {
       type: String as PropType<PaywallProps['pageType']>,
       default: 'premium',
     },
-
     additionalClasses: {
       type: String as PropType<PaywallProps['additionalClasses']>,
       default: '',
     },
   },
-
-  inject: {
-    // Use Access Provider to get the Access SDK and its config
-    accessProvider: { from: AccessProviderSymbol },
-  },
-
-  watch: {
-    'accessProvider.lib': { handler: 'create', deep: true },
-    
-    'accessProvider.config.cookies_enabled': {
-      handler: 'recreate',
-    },
-  },
-
-  data() {
-    return {
-      accessFactory: null as Poool.AccessFactory | null,
-    };
-  },
-
-  setup(props) {
+  setup (props) {
     const containerRef = ref<HTMLElement>();
     const componentId = props.id || generateId();
 
     return { containerRef, componentId };
   },
-
-  mounted() {
+  data () {
+    return {
+      accessFactory: null as Poool.AccessFactory | null,
+    };
+  },
+  watch: {
+    'accessProvider.lib': { handler: 'create', deep: true },
+    'accessProvider.config.cookies_enabled': {
+      handler: 'recreate',
+    },
+  },
+  mounted () {
     this.create();
   },
-
-  beforeUnmount() {
+  beforeUnmount () {
     const container = this.$refs.containerRef as HTMLElement;
     this.destroy(container);
   },
-
   methods: {
-    async create() {
+    async create () {
       const {
         createFactory,
         vueDebug,
       } = this.accessProvider as AccessProviderValue;
 
-      trace('Paywall', vueDebug, "Trying to create a paywall..");
+      trace('Paywall', vueDebug, 'Trying to create a paywall..');
 
       // Create a new AccessFactory instance based on PaywallComponent config
       // props or AccessProvider config props
@@ -133,10 +142,12 @@ const Paywall = defineComponent({
       });
 
       const access = toRaw(this.accessFactory);
+
       if (!access) {
         warn('Paywall', vueDebug,
           'Access SDK is not loaded yet through AccessProvider'
         );
+
         return;
       }
 
@@ -152,11 +163,11 @@ const Paywall = defineComponent({
         percent: contentRef?.percent,
       });
     },
-
-    async destroy(container: HTMLElement) {      
+    async destroy (container: HTMLElement) {
       if (!this.accessFactory) {
         return;
       }
+
       const { destroyFactory } = this.accessProvider as {
         destroyFactory: (paywall: Poool.AccessFactory) => void;
       };
@@ -165,15 +176,13 @@ const Paywall = defineComponent({
       const access = toRaw(this.accessFactory);
       access.off('identityAvailable', this.onIdentityAvailable);
       destroyFactory?.(access);
-      this.accessFactory = null;      
+      this.accessFactory = null;
     },
-
-    async recreate() {
+    async recreate () {
       await this.destroy(this.$refs.containerRef as HTMLElement);
       this.create();
     },
-
-    onIdentityAvailable(
+    onIdentityAvailable (
       e: Parameters<
         Extract<
           AccessEvents['identityAvailable'],
@@ -188,12 +197,11 @@ const Paywall = defineComponent({
             data: e,
           },
         }));
-      // eslint-disable-next-line no-empty
-      } catch (_) {}
+      } catch {}
     },
   },
 
-  render() {
+  render () {
     // Our provider component is a renderless component
     // it does not render any markup of its own.
     return h(

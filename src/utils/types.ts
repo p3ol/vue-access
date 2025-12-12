@@ -129,15 +129,15 @@ export declare interface AccessEvents extends BaseEvents {
   identityAvailable?: EventCallback<{
     userId: string,
     contextName: string
-     contextType: string,
-     contextValue: string,
-     groupSlug: string,
-     scenarioName: string,
-     widget: string,
-     actionName: string,
-     trigger: string,
-     triggerType: string,
-     triggerValue: string
+    contextType: string,
+    contextValue: string,
+    groupSlug: string,
+    scenarioName: string,
+    widget: string,
+    actionName: string,
+    trigger: string,
+    triggerType: string,
+    triggerValue: string
   }>;
   /**
    * Triggered when the paywall locks the current article.

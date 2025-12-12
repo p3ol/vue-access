@@ -25,7 +25,7 @@ const styles: Record<string, any> = {
 const getStyles = (component: string, type?: 'warn' | 'error') => {
   const auditRelated = ['AuditProvider', 'Pixel'].includes(component);
   const section = auditRelated ? 'audit' : 'access';
-  
+
   let _styles = { ...styles.default[section] };
 
   if (type) {
@@ -62,7 +62,8 @@ export const warn = (
   if (isMobile() || isOldIE()) {
     console.warn('[Vue-Access Debug] ' + component + ' :', ...args);
   } else {
-    console.warn(`[Vue-Access] %c ${component} `, getStyles(component, 'warn'), ...args);
+    console.warn(`[Vue-Access] %c ${component} `,
+      getStyles(component, 'warn'), ...args);
   }
 };
 
@@ -76,6 +77,7 @@ export const error = (
   if (isMobile() || isOldIE()) {
     console.error('[Vue-Access Debug] ' + component + ' :', ...args);
   } else {
-    console.error(`[Vue-Access] %c ${component} `, getStyles(component, 'error'), ...args);
+    console.error(`[Vue-Access] %c ${component} `,
+      getStyles(component, 'error'), ...args);
   }
 };

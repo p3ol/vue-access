@@ -1,8 +1,7 @@
-import { type PropType, defineComponent, toRaw } from 'vue';
 import type { Poool } from 'poool-access';
+import { type PropType, defineComponent, toRaw } from 'vue';
 
 import { trace, warn } from '../utils/logger';
-
 import { AuditProviderSymbol, type AuditProviderValue } from '../AuditProvider';
 
 export interface PixelProps {
@@ -45,52 +44,59 @@ export interface PixelProps {
 }
 
 const Pixel = defineComponent({
-  name: "PixelComponent",
-
-  props: {
-    type: String as PropType<PixelProps["type"]>,
-    data: Object as PropType<PixelProps["data"]>,
-    config: Object as PropType<PixelProps["config"]>,
-    options: Object as PropType<PixelProps["options"]>,
-
-    reuse: {
-      type: Boolean as PropType<PixelProps["reuse"]>,
-      default: false,
-    },
-
-    onDone: Function as PropType<PixelProps["onDone"]>,
-  },
-
+  name: 'PixelComponent',
   // Use Audit Provider to get the Audit SDK and its config
   inject: {
     auditProvider: { from: AuditProviderSymbol },
   },
-
+  props: {
+    type: {
+      type: String as PropType<PixelProps['type']>,
+      required: true,
+    },
+    data: {
+      type: Object as PropType<PixelProps['data']>,
+      default: null,
+    },
+    config: {
+      type: Object as PropType<PixelProps['config']>,
+      default () { return {}; },
+    },
+    options: {
+      type: Object as PropType<PixelProps['options']>,
+      default () { return {}; },
+    },
+    reuse: {
+      type: Boolean as PropType<PixelProps['reuse']>,
+      default: false,
+    },
+    onDone: {
+      type: Function as PropType<PixelProps['onDone']>,
+      default: null,
+    },
+  },
+  data () {
+    return { used: false };
+  },
   watch: {
-    "auditProvider.lib": {
+    'auditProvider.lib': {
       handler: 'send',
       deep: true,
     },
 
-    "auditProvider.config.cookies_enabled": {
+    'auditProvider.config.cookies_enabled': {
       handler: 'consentChanged',
     },
   },
-
-  data() {
-    return { used: false };
-  },
-
-  mounted() {
+  mounted () {
     this.send();
   },
-
   methods: {
-    consentChanged() {
+    consentChanged () {
       this.used = false;
       this.send();
     },
-    async send() {
+    async send () {
       const {
         lib,
         config: pConfig,
@@ -103,7 +109,7 @@ const Pixel = defineComponent({
       if (!audit) {
         warn('Pixel', vueDebug, 'Audit SDK is not loaded yet!');
 
-        return
+        return;
       }
 
       if (this.used && !this.reuse) {
@@ -133,13 +139,12 @@ const Pixel = defineComponent({
 
     // Method to resend the page-view event when the cookies_enabled config has
     // changed
-    resend() {
+    resend () {
       this.used = false;
       this.send();
     },
   },
-
-  render() { return this.$slots?.default?.(); },
+  render () { return this.$slots?.default?.(); },
 });
 
 export default Pixel;

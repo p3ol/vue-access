@@ -32,22 +32,25 @@ export declare interface RestrictedContentRef extends RestrictedContentProps {
 
 const RestrictedContent =  defineComponent({
   name: 'RestrictedContent',
-
   props: {
-    mode: String as PropType<RestrictedContentProps['mode']>,
-    percent: Number as PropType<RestrictedContentProps['percent']>,
+    mode: {
+      type: String as PropType<RestrictedContentProps['mode']>,
+      default: 'excerpt',
+    },
+    percent: {
+      type: Number as PropType<RestrictedContentProps['percent']>,
+      default: 80,
+    } ,
   },
-
-  setup() {
+  setup () {
     const contentRef = ref<HTMLElement>();
 
     return { contentRef };
   },
-
   // Render a div with contentRef and $slots.default default child.
-  render() {
+  render () {
     return h('div', { ref: 'contentRef' }, this.$slots?.default?.());
-  }
+  },
 });
 
 export default RestrictedContent;

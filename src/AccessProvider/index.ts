@@ -1,3 +1,4 @@
+import type { Poool } from 'poool-access';
 import {
   type PropType,
   computed,
@@ -5,8 +6,7 @@ import {
   h,
   readonly,
   toRaw,
-  } from 'vue';
-import type { Poool } from 'poool-access';
+} from 'vue';
 import { mergeDeep } from '@junipero/core';
 
 import type {
@@ -17,7 +17,6 @@ import type {
 } from '../utils/types';
 import { loadScript } from '../utils';
 import { trace, warn } from '../utils/logger';
-
 import AuditProvider from '../AuditProvider';
 
 export declare interface AccessProviderValue extends AccessContextValue {
@@ -29,63 +28,71 @@ export const AccessProviderSymbol = Symbol('AccessProvider');
 
 const AccessProvider = defineComponent({
   name: 'AccessProvider',
-
+  provide () {
+    return {
+      [AccessProviderSymbol]: readonly({
+        lib: computed(() => this.lib),
+        appId: computed(() => this.appId),
+        config: computed(() => this.config),
+        texts: computed(() => this.texts),
+        styles: computed(() => this.styles),
+        variables: computed(() => this.variables),
+        events: computed(() => this.events),
+        scriptUrl: computed(() => this.scriptUrl),
+        vueDebug: computed(() => this.vueDebug),
+        createFactory: this.createFactory,
+        destroyFactory: this.destroyFactory,
+      }) as AccessProviderValue,
+    };
+  },
   props: {
-    appId: String,
-
+    appId: {
+      type: String,
+      required: true,
+    },
     config: {
       type: Object as PropType<AccessContextValue['config']>,
-      default() { return {}; },
+      default () { return {}; },
     },
-
     texts: {
       type: Object as PropType<AccessContextValue['texts']>,
-      default() { return {}; },
+      default () { return {}; },
     },
-
     styles: {
       type: Object as PropType<AccessContextValue['styles']>,
-      default() { return {}; },
+      default () { return {}; },
     },
-
     variables: {
       type: Object as PropType<AccessContextValue['variables']>,
-      default() { return {}; },
+      default () { return {}; },
     },
-
     events: {
       type: Object as PropType<AccessContextValue['events']>,
-      default() { return {}; },
+      default () { return {}; },
     },
-
     scriptUrl: {
       type: String,
       default: 'https://assets.poool.fr/access.min.js',
     },
-
     scriptLoadTimeout: {
       type: Number,
       default: 2000,
     },
-
     withAudit: {
       type: Boolean,
       default: false,
     },
-
     vueDebug: {
       type: Boolean,
       default: false,
     },
   },
-
   data: () => {
     return {
       lib: null as Poool.Access | null,
     };
   },
-
-  async mounted() {
+  async mounted () {
     if (
       !globalThis.Access?.isPoool &&
       !globalThis.PooolAccess?.isPoool
@@ -97,17 +104,16 @@ const AccessProvider = defineComponent({
 
     await this.init();
   },
-
   methods: {
     // Method to load the Access SDK script into the global scope
-    async init() {
+    async init () {
       const accessRef = globalThis.PooolAccess || globalThis.Access;
       this.lib = accessRef?.noConflict();
     },
 
     // Method to create a new AccessFactory instance with every configs &
     // event handlers
-    createFactory(
+    createFactory (
       opts: Pick<
         AccessContextValue,
         'config' | 'texts' | 'styles' | 'variables' | 'events'
@@ -150,6 +156,7 @@ const AccessProvider = defineComponent({
           EventCallback<typeof this.events[keyof typeof this.events]>,
         ]) => {
           const eventName = event as Poool.EventsList;
+
           if ((callback as EventCallbackObject<typeof event>).once) {
             factory.once(eventName,
               (callback as EventCallbackObject<typeof event>).callback);
@@ -161,16 +168,16 @@ const AccessProvider = defineComponent({
           }
         });
 
-        trace('AccessProvider', this.vueDebug,
-          'Access SDK initialized & setup successfuly'
-        );
+      trace('AccessProvider', this.vueDebug,
+        'Access SDK initialized & setup successfuly'
+      );
 
       return factory;
     },
 
     // Method to destroy the AccessFactory instance and
     // remove all event listeners
-    destroyFactory(factory: Poool.AccessFactory) {
+    destroyFactory (factory: Poool.AccessFactory) {
       if (!factory) {
         return;
       }
@@ -186,29 +193,9 @@ const AccessProvider = defineComponent({
       return factory.destroy();
     },
   },
-
-  // Used to provide the AccessProvider values to all child components
-  provide() {
-    return {
-      [AccessProviderSymbol]: readonly({
-        lib: computed(() => this.lib),
-        appId: computed(() => this.appId),
-        config: computed(() => this.config),
-        texts: computed(() => this.texts),
-        styles: computed(() => this.styles),
-        variables: computed(() => this.variables),
-        events: computed(() => this.events),
-        scriptUrl: computed(() => this.scriptUrl),
-        vueDebug: computed(() => this.vueDebug),
-        createFactory: this.createFactory,
-        destroyFactory: this.destroyFactory,
-      }) as AccessProviderValue,
-    }
-  },
-
-  render() {
+  render () {
     // Our provider component is a renderless component
-    // it does not render any markup of its own.    
+    // it does not render any markup of its own.
     return this.withAudit
       ? h(AuditProvider, {
         appId: this.appId,

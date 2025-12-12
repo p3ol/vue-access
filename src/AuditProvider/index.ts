@@ -1,11 +1,11 @@
+import type { Poool } from 'poool-access';
 import {
   type PropType,
   computed,
   defineComponent,
   readonly,
   toRaw,
-  } from 'vue';
-import type { Poool } from 'poool-access';
+} from 'vue';
 
 import type {
   AuditContextValue,
@@ -26,41 +26,51 @@ export const AuditProviderSymbol = Symbol('AuditProvider');
 
 const AuditProvider = defineComponent({
   name: 'AuditProvider',
-
+  provide () {
+    return {
+      [AuditProviderSymbol]: readonly({
+        lib: computed(() => this.lib),
+        appId: computed(() => this.appId),
+        config: computed(() => this.config),
+        events: computed(() => this.events),
+        scriptUrl: computed(() => this.scriptUrl),
+        vueDebug: computed(() => this.vueDebug),
+      }) as AuditProviderValue,
+    };
+  },
   props: {
-    appId: String,
-
+    appId: {
+      type: String,
+      required: true,
+    },
     config: {
       type: Object as PropType<AuditContextValue['config']>,
-      default() { return {}; },
+      default () { return {}; },
     },
-
     events: {
       type: Object as PropType<AuditContextValue['events']>,
-      default() { return {}; },
+      default () { return {}; },
     },
-
     scriptUrl: {
       type: String,
       default: 'https://assets.poool.fr/audit.min.js',
     },
-
     scriptLoadTimeout: {
       type: Number,
       default: 2000,
     },
-
     vueDebug: {
       type: Boolean,
       default: false,
     },
   },
-
   data: () => {
     return { lib: null as Poool.Audit | null };
   },
-
-  async mounted() {
+  watch: {
+    'config.cookies_enabled': { handler: 'reinit' },
+  },
+  async mounted () {
     if (
       !globalThis.Audit?.isPoool &&
       !globalThis.PooolAudit?.isPoool
@@ -72,18 +82,12 @@ const AuditProvider = defineComponent({
 
     this.init();
   },
-
-  beforeUnmount() {
+  beforeUnmount () {
     this.deinit();
   },
-
-  watch: {
-    "config.cookies_enabled": { handler: 'reinit' },
-  },
-
   methods: {
     // Method to initialize the Audit SDK, setup the config and events handlers
-    async init() {
+    async init () {
       const auditRef = globalThis.PooolAudit || globalThis.Audit;
       const lib = toRaw(auditRef?.noConflict());
 
@@ -103,6 +107,7 @@ const AuditProvider = defineComponent({
           EventCallback<typeof this.events[keyof typeof this.events]>,
         ]) => {
           const eventName = event as Poool.EventsList;
+
           if ((callback as EventCallbackObject<typeof event>).once) {
             lib.once(eventName,
               (callback as EventCallbackObject<typeof event>).callback);
@@ -118,9 +123,7 @@ const AuditProvider = defineComponent({
         'Audit SDK has been initialized successfuly'
       );
     },
-
-    // Method to unmount properly audit and shutdown all event listeners
-    deinit() {
+    deinit () {
       const audit = toRaw(this.lib);
 
       Object
@@ -142,13 +145,11 @@ const AuditProvider = defineComponent({
 
       audit?.off('identityAvailable', this.onIdentityAvailable);
     },
-
     // Method to reinit
-    reinit() {
+    reinit () {
       this.deinit();
       this.init();
     },
-
     // Identity available custom internal event handler
     onIdentityAvailable (
       e: Parameters<
@@ -165,25 +166,11 @@ const AuditProvider = defineComponent({
             data: e,
           },
         }));
-      // eslint-disable-next-line no-empty
-      } catch (_) {}
+      } catch {}
     },
   },
 
-  provide() {
-    return {
-      [AuditProviderSymbol]: readonly({
-        lib: computed(() => this.lib),
-        appId: computed(() => this.appId),
-        config: computed(() => this.config),
-        events: computed(() => this.events),
-        scriptUrl: computed(() => this.scriptUrl),
-        vueDebug: computed(() => this.vueDebug),
-      }) as AuditProviderValue,
-    }
-  },
-
-  render() {
+  render () {
     // Our provider component is a renderless component
     // it only has to render his child.
     return this.$slots?.default?.();

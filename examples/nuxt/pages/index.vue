@@ -10,8 +10,14 @@ import { RouterLink } from 'vue-router';
   </p>
 
   <nav>
-    <RouterLink class="ml-3" to="/consent">Go to consent</RouterLink>
-    <RouterLink class="ml-3" to="/article/1">Go to article 1</RouterLink>
-    <RouterLink class="ml-3" to="/article/2">Go to article 2</RouterLink>
+    <RouterLink class="ml-3" to="/consent">
+      Go to consent
+    </RouterLink>
+    <RouterLink class="ml-3" to="/article/1">
+      Go to article 1
+    </RouterLink>
+    <RouterLink class="ml-3" to="/article/2">
+      Go to article 2
+    </RouterLink>
   </nav>
 </template>
