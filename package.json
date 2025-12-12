@@ -2,6 +2,7 @@
   "name": "@poool/vue-access",
   "version": "1.0.1",
   "description": "Plugin to easily add Poool access to your Vue app ✨",
+  "type": "module",
   "repository": "https://github.com/p3ol/vue-access.git",
   "author": "Nicolas Auger <nicolas@poool.fr",
   "license": "MIT",
@@ -10,11 +11,15 @@
   "types": "dist/types/index.d.ts",
   "sideEffects": false,
   "engines": {
-    "node": "18 || 20 || 22"
+    "node": "20 || 22 || 24"
   },
   "workspaces": [
     "examples/*"
   ],
+  "dependencies": {
+    "@junipero/core": "3.12.3",
+    "@types/poool-access": "5.18.1"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "28.0.1",
     "@rollup/plugin-node-resolve": "15.3.0",
@@ -51,10 +56,6 @@
     "release": "commit-and-tag-version && git push --follow-tags",
     "example:basic": "yarn workspace poool-vue-access-basic-example serve",
     "example:nuxt": "yarn workspace poool-vue-access-nuxt-example serve"
-  },
-  "dependencies": {
-    "@junipero/core": "3.7.1",
-    "@types/poool-access": "5.18.0"
   },
   "packageManager": "yarn@4.12.0"
 }

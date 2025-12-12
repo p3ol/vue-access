@@ -5,6 +5,7 @@
     "serve": "nuxt dev"
   },
   "dependencies": {
-    "@poool/vue-access": "portal:../../"
+    "@poool/vue-access": "portal:../../",
+    "nuxt": "4.2.2"
   }
 }

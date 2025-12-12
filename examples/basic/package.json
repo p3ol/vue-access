@@ -1,9 +1,11 @@
 {
   "name": "poool-vue-access-basic-example",
+  "type": "module",
   "scripts": {
     "serve": "vite"
   },
   "dependencies": {
-    "@poool/vue-access": "portal:../../"
+    "@poool/vue-access": "portal:../../",
+    "vue-router": "4.6.3"
   }
 }
