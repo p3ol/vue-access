@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.0.3](https://github.com/p3ol/vue-access/compare/v1.0.2...v1.0.3) (2025-12-15)
+
+
+### Bug Fixes
+
+* mjs generated instead of js ([3eead5c](https://github.com/p3ol/vue-access/commit/3eead5cf5e38310e32a2dd18ac2ea4dc0cf74d8e))
+
 ## [1.0.2](https://github.com/p3ol/vue-access/compare/v1.0.1...v1.0.2) (2025-12-12)
 
 
