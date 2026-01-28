@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@poool/eslint-config": "5.0.10",
-    "@swc/core": "1.15.8",
+    "@swc/core": "1.15.11",
     "@types/node": "25.0.10",
     "@vitejs/plugin-vue": "6.0.3",
     "@vue/eslint-config-typescript": "14.6.0",
