@@ -46,7 +46,7 @@
     "vite": "7.2.7",
     "vue": "3.5.28",
     "vue-eslint-parser": "10.2.0",
-    "vue-tsc": "3.1.8"
+    "vue-tsc": "3.2.5"
   },
   "scripts": {
     "type-check": "vue-tsc --build --force",
