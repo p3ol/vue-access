@@ -1103,10 +1103,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@junipero/core@npm:3.12.3":
-  version: 3.12.3
-  resolution: "@junipero/core@npm:3.12.3"
-  checksum: 10c0/33a064e86513fb092ba3014a26c0e47d6f435ce762d7e8d98187eaa11ddfad052b3ac040367b41619bdbd7d399d95d7dd681446d11403629af963430cc4e1e81
+"@junipero/core@npm:3.14.1":
+  version: 3.14.1
+  resolution: "@junipero/core@npm:3.14.1"
+  checksum: 10c0/b9c095c71377af086a81c6aaca6bd881104f99ffb9dea9f08d710bca10a6c2cfbf971702bbedfdce647e0b8a7d327940b7f9cfcf62c894d299aa61a7165e872a
   languageName: node
   linkType: hard
 
@@ -2025,7 +2025,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@poool/vue-access@portal:../../::locator=poool-vue-access-basic-example%40workspace%3Aexamples%2Fbasic"
   dependencies:
-    "@junipero/core": "npm:3.12.3"
+    "@junipero/core": "npm:3.14.1"
     "@types/poool-access": "npm:5.18.1"
   peerDependencies:
     vue: ^3.0.0
@@ -2036,7 +2036,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@poool/vue-access@portal:../../::locator=poool-vue-access-nuxt-example%40workspace%3Aexamples%2Fnuxt"
   dependencies:
-    "@junipero/core": "npm:3.12.3"
+    "@junipero/core": "npm:3.14.1"
     "@types/poool-access": "npm:5.18.1"
   peerDependencies:
     vue: ^3.0.0
@@ -2047,7 +2047,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@poool/vue-access@workspace:."
   dependencies:
-    "@junipero/core": "npm:3.12.3"
+    "@junipero/core": "npm:3.14.1"
     "@poool/eslint-config": "npm:5.0.10"
     "@swc/core": "npm:1.15.40"
     "@types/node": "npm:25.0.10"
