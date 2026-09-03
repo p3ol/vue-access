@@ -31,7 +31,7 @@
     "@types/poool-access": "5.18.1"
   },
   "devDependencies": {
-    "@poool/eslint-config": "5.0.10",
+    "@poool/eslint-config": "6.3.0",
     "@swc/core": "1.15.40",
     "@types/node": "25.0.10",
     "@vitejs/plugin-vue": "6.0.6",
