@@ -175,6 +175,7 @@ export declare interface AccessEvents extends BaseEvents {
    */
   release?: EventCallback<{
     widget: string,
+    releaseSignature?: string;
     actionName: string,
     trigger: string,
     triggerType: string,
