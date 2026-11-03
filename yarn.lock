@@ -2040,7 +2040,7 @@ __metadata:
   resolution: "@poool/vue-access@portal:../../::locator=poool-vue-access-basic-example%40workspace%3Aexamples%2Fbasic"
   dependencies:
     "@junipero/core": "npm:3.12.3"
-    "@types/poool-access": "npm:5.18.1"
+    "@types/poool-access": "npm:5.19.0"
   peerDependencies:
     vue: ^3.0.0
   languageName: node
@@ -2051,7 +2051,7 @@ __metadata:
   resolution: "@poool/vue-access@portal:../../::locator=poool-vue-access-nuxt-example%40workspace%3Aexamples%2Fnuxt"
   dependencies:
     "@junipero/core": "npm:3.12.3"
-    "@types/poool-access": "npm:5.18.1"
+    "@types/poool-access": "npm:5.19.0"
   peerDependencies:
     vue: ^3.0.0
   languageName: node
@@ -2065,7 +2065,7 @@ __metadata:
     "@poool/eslint-config": "npm:5.0.10"
     "@swc/core": "npm:1.15.40"
     "@types/node": "npm:25.0.10"
-    "@types/poool-access": "npm:5.18.1"
+    "@types/poool-access": "npm:5.19.0"
     "@vitejs/plugin-vue": "npm:6.0.10"
     "@vue/eslint-config-typescript": "npm:14.6.0"
     "@vue/tsconfig": "npm:0.8.1"
@@ -2801,10 +2801,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/poool-access@npm:5.18.1":
-  version: 5.18.1
-  resolution: "@types/poool-access@npm:5.18.1"
-  checksum: 10c0/3b0b5b61e3fc329f53da4ab1727926048c1abef38c03e59265a966d7b213271bebc50b814cc30615ca88d9a5b7f8dc7ebcc1791c08f5c3beb6e27ff90a022fe2
+"@types/poool-access@npm:5.19.0":
+  version: 5.19.0
+  resolution: "@types/poool-access@npm:5.19.0"
+  checksum: 10c0/b763acc694981de48c7cba39804d3edb26e782474733dd250ca55efa952e9fa1f739e9e994f5b4bc0373e77ccbf159bb5cc3d0c3b1723a1339bf315b79bc9351
   languageName: node
   linkType: hard
 
